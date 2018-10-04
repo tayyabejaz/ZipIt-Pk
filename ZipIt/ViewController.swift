@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController, WKUIDelegate {
     
     //Creating a WebView
     var webView : WKWebView!
@@ -22,14 +22,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
         let url = URL(string: "https://zipit.pk")!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
-        
-        let preferences = WKPreferences()
-        preferences.javaScriptEnabled = true
+   
     }
     
     override func loadView() {
-        webView = WKWebView()
-        webView.navigationDelegate = self
+//        webView = WKWebView()
+//        webView.uiDelegate = self
+//        webView.navigationDelegate = self
+//        view = webView
+        
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
         view = webView
     }
     
